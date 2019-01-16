@@ -1,12 +1,11 @@
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404
-
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from django.contrib.auth.models import User
-
 from .models import Post
+from analytics.models import View
 
 # Create your views here.
 
@@ -39,6 +38,21 @@ class UserPostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+    def get_object(self):
+        post_pk = self.kwargs.get("pk")
+        if post_pk:
+            post_query = Post.objects.filter(pk=post_pk) # model.objects returns a list
+            if post_query.exists():
+                post_object = post_query.first() # Grab the first (and only) obj in list
+                view, created = View.objects.get_or_create(
+                    post = post_object,
+                )
+                if view:
+                    view.views_count += 1
+                    view.save()
+                return post_object
+        raise Http404
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
