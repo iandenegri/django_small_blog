@@ -15,7 +15,7 @@ class Profile(models.Model):
 
     # This is in case I want to add user profiles for people to go to. Would probably be similar to my current idea for the profile page except without the profile management card that's at the top of the page and would only show user's posts and friends.
     def get_absolute_url(self):
-        return "/users/{}".format(self.user.username)
+        return "/users/{}".format(self.pk)
     
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)
