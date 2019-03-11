@@ -15,7 +15,12 @@
         </div>
     </div>
     <div class="card">
-        <p>Insert friends here?</p>
+        <h2>{{ user.username }}'s friends:</h2>
+        <ul>
+            {% for friend in friends_list %}
+                <li><a href="{{ friend.get_absolute_url }}"> {{ friend.user.username }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
     <br />
     <div class="card">

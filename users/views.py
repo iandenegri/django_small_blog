@@ -52,7 +52,8 @@ def profile(request):
         "profile_user":profile_user,
         "sent_requests":sent_fre_requests,
         "rec_requests":rec_fre_requests,
-        "friends":friends,
+        "friends_list":friends,
+        "profile":prof,
     }
     
     return render(request, "users/profile.html", context=context)

@@ -11,6 +11,9 @@
             <p class="text-secondary">
                 {{ user.email }}
             </p>
+            <p class="text-secondary">
+                <a href= "{{ profile.get_absolute_url }}">Your social profile</a>
+            </p>
           </div>
         </div>
         <!-- FORM HERE -->
@@ -31,10 +34,37 @@
         </form>
     </div>
     <div class="card">
-        <p>Insert friends here?</p>
+        <h2>Your friends:</h2>
+        <ul>
+            {% for friend in friends_list %}
+                <li><a href="{{ friend.get_absolute_url }}"> {{ friend.user.username }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
     <br />
+    {% comment %} {% if rec_requests %} {% endcomment %}
     <div class="card">
-        <p>Insert user's posts here.</p>
+        <h2>Your received friend requests:</h2>
+        <ul>
+            {% for requests in rec_requests %}
+                <li><a href="{{ requests.from_user.profile.get_absolute_url }}"> {{ requests.from_user.username }}</a> - <a href="{{ rec_requests.from_user.get_absolute_url }}">Accept</a> or <a href="{{ rec_requests.from_user.get_absolute_url }}">Decline</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <br />
+    {% comment %} {% endif %} {% endcomment %}
+    {% comment %} {% if rec_requests %} {% endcomment %}
+    <div class="card">
+        <h2>Your sent friend requests:</h2>
+        <ul>
+            {% for requests in rec_requests %}
+                <li><a href="{{ requests.from_user.profile.get_absolute_url }}"> {{ requests.from_user.username }}</a> - <a href="{{ rec_requests.from_user.get_absolute_url }}">Cancel</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <br />
+    {% comment %} {% endif %} {% endcomment %}
+    <div class="card">
+        <h2>Your posts: </h2>
     </div>
 {% endblock content %}
