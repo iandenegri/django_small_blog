@@ -49,11 +49,11 @@ INSTALLED_APPS = [
     # THIRDPARTY APPS BELOW
     'rest_framework',
     'crispy_forms',
+    'django_extensions',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.discord',
-    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -127,8 +127,8 @@ AUTHENTICATION_BACKENDS = (
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 # SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
