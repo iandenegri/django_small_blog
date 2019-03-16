@@ -18,7 +18,7 @@
         <h2>{{ user.username }}'s friends:</h2>
         <ul>
             {% for friend in friends_list %}
-                <li><a href="{{ friend.get_absolute_url }}"> {{ friend.user.username }}</a></li>
+                <li><img class="rounded-circle account-img" src="{{ friend.user.profile.image.url }}"><a href="{{ friend.get_absolute_url }}"> {{ friend.user.username }}</a></li>
             {% endfor %}
         </ul>
     </div>
@@ -26,4 +26,14 @@
     <div class="card">
         <p>Insert user's posts here.</p>
     </div>
+    {% if button_status != 'none' %}
+    <div class="card">
+        <p>Friend request code going to go in this card..</p>
+        {% if button_status == 'not_friend' %}
+            <p><a href="{% url 'send_request' user.pk %}">u gonna add this fool?</a></p>
+        {% elif button_status == 'request_sent' %}
+            <p><a href="{% url 'cancel_request' user.pk %}">u already added this fool!!</a></p>
+        {% endif %}
+    </div>
+    {% endif %}
 {% endblock content %}

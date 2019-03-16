@@ -37,34 +37,35 @@
         <h2>Your friends:</h2>
         <ul>
             {% for friend in friends_list %}
-                <li><a href="{{ friend.get_absolute_url }}"> {{ friend.user.username }}</a></li>
+                <li><img class="rounded-circle account-img" src="{{ friend.user.profile.image.url }}"><a href="{{ friend.get_absolute_url }}"> {{ friend.user.username }}</a></li>
             {% endfor %}
         </ul>
     </div>
     <br />
-    {% comment %} {% if rec_requests %} {% endcomment %}
+    {% if rec_requests %}
     <div class="card">
         <h2>Your received friend requests:</h2>
         <ul>
-            {% for requests in rec_requests %}
-                <li><a href="{{ requests.from_user.profile.get_absolute_url }}"> {{ requests.from_user.username }}</a> - <a href="{{ rec_requests.from_user.get_absolute_url }}">Accept</a> or <a href="{{ rec_requests.from_user.get_absolute_url }}">Decline</a></li>
+            {% for request in rec_requests %}
+                <li><img class="rounded-circle account-img" src="{{ request.from_user.profile.image.url }}"><a href="{{ request.from_user.profile.get_absolute_url }}"> {{ request.from_user.username }}</a> - <a href="{% url 'accept_request' request.from_user.pk %}">Accept</a> or <a href="{% url 'delete_request' request.from_user.pk %}">Decline</a></li>
             {% endfor %}
         </ul>
     </div>
     <br />
-    {% comment %} {% endif %} {% endcomment %}
-    {% comment %} {% if rec_requests %} {% endcomment %}
+    {% endif %}
+    {% if sent_requests %}
     <div class="card">
         <h2>Your sent friend requests:</h2>
         <ul>
-            {% for requests in rec_requests %}
-                <li><a href="{{ requests.from_user.profile.get_absolute_url }}"> {{ requests.from_user.username }}</a> - <a href="{{ rec_requests.from_user.get_absolute_url }}">Cancel</a></li>
+            {% for request in sent_requests %}
+                <li><img class="rounded-circle account-img" src="{{ request.to_user.profile.image.url }}"><a href="{{ request.to_user.profile.get_absolute_url }}"> {{ request.to_user.username }}</a> - <a href="{% url 'cancel_request' request.to_user.pk %}">Cancel</a></li>
             {% endfor %}
         </ul>
     </div>
     <br />
-    {% comment %} {% endif %} {% endcomment %}
+    {% endif %}
     <div class="card">
         <h2>Your posts: </h2>
+        {{ user.posts }}
     </div>
 {% endblock content %}

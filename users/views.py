@@ -67,33 +67,32 @@ def user_list(request):
     return render(request, "users/user_list.html", context=context)
 
 @login_required
-def send_friend_request(request, id):
-    if request.user.is_authenticated():
-        user_recipient = get_object_or_404(User, id=id) # Passing the id of the user we're trying to find and add.
+def send_friend_request(request, pk):
+    if request.user.is_authenticated:
+        user_recipient = get_object_or_404(User, id=pk) # Passing the id of the user we're trying to find and add.
         fri_request, created = FriendRequest.objects.get_or_create(
             from_user = request.user,
             to_user = user_recipient
         )
-        messages.success(request, "Your friend request to {} has been sent!.".format(user_recipient))
+        messages.success(request, "Your friend request to {} has been sent!".format(user_recipient))
         return redirect('/')
 
 @login_required
-def cancel_friend_request(request, id):
-    if request.user.is_authenticated():
-        user_recipient = get_object_or_404(User, id=id) # Passing the id of the user we're trying to find and add.
-
+def cancel_friend_request(request, pk):
+    if request.user.is_authenticated:
+        user_recipient = get_object_or_404(User, id=pk) # Passing the id of the user we're trying to find and add.
         fri_request = FriendRequest.objects.filter(
             from_user = request.user,
             to_user = user_recipient
         ).first() # Find a queryset of objects that match the to and from users (there should only be one..) and then pick the first object so it's a model object and not a queryset.
 
         fri_request.delete()
-        messages.success(request, "Your friend request to {} has been canceled!.".format(user_recipient))
+        messages.success(request, "Your friend request to {} has been canceled!".format(user_recipient))
         return redirect('/')
 
 @login_required
-def accept_friend_request(request, id):
-    from_user = get_object_or_404(User, id=id)
+def accept_friend_request(request, pk):
+    from_user = get_object_or_404(User, id=pk)
 
     fri_request = FriendRequest.objects.filter(
         from_user = from_user,
@@ -105,12 +104,12 @@ def accept_friend_request(request, id):
     user1.profile.friends.add(user2.Profile)
     user2.profile.friends.add(user1.Profile)
     fri_request.delete()
-    messages.success(request, "Your friend request from {} has been accepted!.".format(from_user))
+    messages.success(request, "Your friend request from {} has been accepted!".format(from_user))
     return redirect('/profile/')
 
 @login_required
-def delete_friend_request(request, id):
-    from_user = get_object_or_404(User, id=id)
+def delete_friend_request(request, pk):
+    from_user = get_object_or_404(User, id=pk)
 
     fri_request = FriendRequest.objects.filter(
         from_user = from_user,
@@ -118,7 +117,7 @@ def delete_friend_request(request, id):
     ).first() # Find QS that matches to from, pick first obj of QS so it's an obj and not a QS.
 
     fri_request.delete()
-    messages.success(request, "Your friend request from {} has been deleted!.".format(from_user))
+    messages.success(request, "Your friend request from {} has been deleted!".format(from_user))
     return redirect('/profile/')
 
 def user_social_profile(request, pk):
@@ -132,11 +131,21 @@ def user_social_profile(request, pk):
 
     button_status = 'none'
     # Check to see if this user is your friend
-    if prof not in request.user.profile.friends.all():
-        button_status = 'not_friend'
+    if profile_user != request.user:
+        print("Wowee you're on someone else's profile.")
+        if prof not in request.user.profile.friends.all():
+            print(request.user.profile.friends.all())
+            button_status = 'not_friend'
 
-        if FriendRequest.objects.filter(from_user=request.user).filter(to_user=profile_user):
-            button_status = 'request_sent'
+            if (FriendRequest.objects.filter(from_user=request.user).filter(to_user=prof.user).count() == 1):
+                button_status = 'request_sent'  # If this is active then either replace the send request link with cancel or have it say request is already sent and add an offer to cancel the request.
+        else:
+            print("You two are already friends.")
+    else:
+        print('on your own profile...')
+
+    print(button_status)
+
     context = {
         'user':profile_user,
         'button_status':button_status,
