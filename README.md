@@ -15,7 +15,7 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
 * There's now a profile panel for managing requests and a social profile panel for friend interactions and seeing other user's posts.
     * Posts are a WIP.
 ## 03/17/2019
-*Added the ability to export Profiles and FriendRequests from the admin panel. It's pretty ugly right now but it works. This functionality could be added to other areas in the project and would probably be more useful for posts.
+* Added the ability to export Profiles and FriendRequests from the admin panel. It's pretty ugly right now but it works. This functionality could be added to other areas in the project and would probably be more useful for posts.
     * Add import_export to Posts model.
 
 # Project Installation
