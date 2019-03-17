@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.discord',
+    'import_export'  # Add the ability to export models as csv's.
 ]
 
 MIDDLEWARE = [
