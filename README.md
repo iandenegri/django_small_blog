@@ -14,3 +14,14 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
     * Still buggy and is being worked on.
 * There's now a profile panel for managing requests and a social profile panel for friend interactions and seeing other user's posts.
     * Posts are a WIP.
+
+# Project Installation
+1. Pull project down from GitHub.
+1. Create a virtualenv (this isn't required but it's recommended.)
+1. Populate your environment with the required packages by running ```pip install -r requirements.txt``` from the root of the project folder.
+    * The requirements.txt needs to be updated!!! Remove this note when that's done...
+1. When in the root of the project run ```python manage.py runserver``` to run the server.
+    * You can sign up for an account from within the project.
+    * If you want to be a superuser or have admin access to things then run ```python manage.py createsuperuser``` and follow the prompts.
+    * With a super user account you can access the admin panel via localhost:8000/admin/
+1. Check out the site at localhost:8000/

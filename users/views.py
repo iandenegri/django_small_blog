@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from .models import Profile, FriendRequest
+from blog.models import Post
 
 User = get_user_model()
 
@@ -34,6 +35,10 @@ def profile(request):
 
     friends = prof.friends.all()
 
+    # Import posts
+    posts = Post.objects.filter(author=request.user)
+    print(posts)
+
     if request.method=="POST":
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -54,6 +59,7 @@ def profile(request):
         "rec_requests":rec_fre_requests,
         "friends_list":friends,
         "profile":prof,
+        "posts":posts
     }
     
     return render(request, "users/profile.html", context=context)

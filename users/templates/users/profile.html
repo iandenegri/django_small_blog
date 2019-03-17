@@ -37,7 +37,7 @@
         <h2>Your friends:</h2>
         <ul>
             {% for friend in friends_list %}
-                <li><img class="rounded-circle account-img" src="{{ friend.user.profile.image.url }}"><a href="{{ friend.get_absolute_url }}"> {{ friend.user.username }}</a></li>
+                <li><img class="rounded-circle account-img" src="{{ friend.user.profile.image.url }}"><a href="{{ friend.get_absolute_url }}"> {{ friend.user.username }}</a> - <a>Delete {{ friend.user.username }}</a></li>
             {% endfor %}
         </ul>
     </div>
@@ -64,8 +64,12 @@
     </div>
     <br />
     {% endif %}
+    {% if posts %}
     <div class="card">
         <h2>Your posts: </h2>
-        {{ user.posts }}
+        {% for post in posts %}
+            <p>{{ post.title }}</p>
+        {% endfor %}
     </div>
+    {% endif %}
 {% endblock content %}
