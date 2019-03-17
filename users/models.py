@@ -34,4 +34,4 @@ class FriendRequest(models.Model):
     from_user = models.ForeignKey(User, related_name="from_user", on_delete=models.CASCADE)
 
     def __str__(self):
-        return "Request from {} to {}".format(self.to_user.username, self.from_user.username)
+        return "Request from {} to {}".format(self.from_user.username, self.to_user.username)

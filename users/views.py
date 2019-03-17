@@ -70,12 +70,19 @@ def user_list(request):
 def send_friend_request(request, pk):
     if request.user.is_authenticated:
         user_recipient = get_object_or_404(User, id=pk) # Passing the id of the user we're trying to find and add.
-        fri_request, created = FriendRequest.objects.get_or_create(
-            from_user = request.user,
-            to_user = user_recipient
-        )
-        messages.success(request, "Your friend request to {} has been sent!".format(user_recipient))
-        return redirect('/')
+        # Create a check to see if they're already friends. If they are then the rest of the code shouldn't run..
+        if (FriendRequest.objects.filter(from_user = user_recipient, to_user = request.user).first()) \
+            or (FriendRequest.objects.filter(from_user = request.user, to_user = user_recipient).first()) \
+                or (user_recipient.profile in request.user.profile.friends.all()):
+            messages.error(request, "You already have a friend request with this using that is currently pending...")
+            return redirect('/')
+        else:
+            fri_request, created = FriendRequest.objects.get_or_create(
+                from_user = request.user,
+                to_user = user_recipient
+            )
+            messages.success(request, "Your friend request to {} has been sent!".format(user_recipient))
+            return redirect('/')
 
 @login_required
 def cancel_friend_request(request, pk):
@@ -139,6 +146,8 @@ def user_social_profile(request, pk):
 
             if (FriendRequest.objects.filter(from_user=request.user).filter(to_user=prof.user).count() == 1):
                 button_status = 'request_sent'  # If this is active then either replace the send request link with cancel or have it say request is already sent and add an offer to cancel the request.
+            elif (FriendRequest.objects.filter(from_user=prof.user).filter(to_user=request.user).count() == 1):
+                button_status = 'request_received'  # If this is the status then you've already gotten an invite from the user.
         else:
             print("You two are already friends.")
     else:

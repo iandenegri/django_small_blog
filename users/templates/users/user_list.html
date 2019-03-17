@@ -6,7 +6,7 @@
         <p>
             <ul>
             {% for profile in profiles %}
-                <li><a href="{{profile.get_absolute_url}}">{{ profile.user.username }}</a></li>
+                <li><img class="rounded-circle account-img" src="{{ profile.user.profile.image.url }}"><a href="{{profile.get_absolute_url}}">{{ profile.user.username }}</a></li>
             {% endfor %}
             </ul>
         </p>

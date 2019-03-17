@@ -33,6 +33,8 @@
             <p><a href="{% url 'send_request' user.pk %}">u gonna add this fool?</a></p>
         {% elif button_status == 'request_sent' %}
             <p><a href="{% url 'cancel_request' user.pk %}">u already added this fool!!</a></p>
+        {% elif button_status == 'request_received' %}
+            <p><a href="{% url 'profile' %}">This user has sent you a friend request. Go to your profile to check your requests.</a></p>
         {% endif %}
     </div>
     {% endif %}
