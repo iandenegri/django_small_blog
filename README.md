@@ -17,6 +17,8 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
 ## 03/17/2019
 * Added the ability to export Profiles and FriendRequests from the admin panel. It's pretty ugly right now but it works. This functionality could be added to other areas in the project and would probably be more useful for posts.
     * Add import_export to Posts model.
+* Adding the ability to let users vote for a feature they want added and that allows users to submit ideas for new features.
+    * Got form to render but need to test voting, submitting a feature, etc. None of the real logic has been tested or added yet.
 
 # Project Installation
 1. Pull project down from GitHub.
