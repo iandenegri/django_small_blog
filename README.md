@@ -19,6 +19,8 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
     * Add import_export to Posts model.
 * Adding the ability to let users vote for a feature they want added and that allows users to submit ideas for new features.
     * Got form to render but need to test voting, submitting a feature, etc. None of the real logic has been tested or added yet.
+## 03/26/2019
+* Cleaned up pycache files and other unwanted files that were there before I added a .gitignore. :-)
 
 # Project Installation
 1. Pull project down from GitHub.
@@ -37,7 +39,7 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
 * A search bar to search for posts
 * A search bar to search for users
 
-# To-Do's:
+# To-Do's That I'm Not Sure About:
 * Add the ability to export a post as a PDF
 * Add a link to add a post's user as a friend
 * Add a comment system to posts.
@@ -46,6 +48,6 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
 * Update user profiles. They're currently just a copy of the page where a user can change their settings and manage their friend requests.
 * Add a dedicated page for managing friend requests.
 * There's a bit of areas that need an overhaul for their UI.
-* Clean up the repo of files that shouldn't be getting uploaded like caches.
 * Look into Single Sign On (SSO) to the project as an option for users. Or a token system so that they can log in once with the token and then the token expires after their log in so that anyone that uses the computer after that user can't just use that user's account.
-* 
+* Pictures in posts. Not sure if can locally host them or what but this would be a nice touch to add.
+* Ability to share posts on Social Media Platforms.

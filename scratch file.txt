@@ -1,9 +1,0 @@
-Show your friends on your profile page.
-these friends will link to the home page but will filter down the posts to only posts by that friend.
-
-maybe add a way to filter posts to only users that are friends with the currently logged in user?
-
-add the "add friend" button to the post and not the home page.
-Would there be a way to make it aware of whether or not the user is already friends with that person?
-
-while updating stuff, maybe add all the users post links to their profile page in a "posts" section.
