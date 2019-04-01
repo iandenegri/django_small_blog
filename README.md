@@ -21,6 +21,9 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
     * Got form to render but need to test voting, submitting a feature, etc. None of the real logic has been tested or added yet.
 ## 03/26/2019
 * Cleaned up pycache files and other unwanted files that were there before I added a .gitignore. :-)
+## 03/31/2019
+* Started adding a tagging system for posts.
+* Added test cases for the blog app. Only tests the posts right now but will soon test tags too.
 
 # Project Installation
 1. Pull project down from GitHub.
@@ -38,6 +41,7 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
 * Maybe instant messaging? Not sure if this is possible. I'd need a way to have two users on the same connection... I think I'll need to deploy this to test it...
 * A search bar to search for posts
 * A search bar to search for users
+* UNIT TESTS!!!!!!!!! Need to also add an area in the ReadMe explaining how to run unit tests once they're added...
 
 # To-Do's That I'm Not Sure About:
 * Add the ability to export a post as a PDF
