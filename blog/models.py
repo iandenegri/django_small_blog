@@ -22,7 +22,7 @@ class Post(models.Model):
 # Django-taggit may see use for the Beyblade Burst site that I plan to work on rather than doing the tags manually again...
 class Tag(models.Model):
     name = models.CharField(max_length=50)
-    created_at  = models.DateTimeField(auto_now_add=False)
+    created_at = models.DateTimeField(auto_now_add=False)
 
     def __str__(self):
         return self.name
