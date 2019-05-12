@@ -54,7 +54,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.discord',
-    'import_export'  # Add the ability to export models as csv's.
+    'import_export',  # Add the ability to export models as csv's.
+    'bootstrapform',
+    'survey',
 ]
 
 MIDDLEWARE = [
