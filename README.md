@@ -24,6 +24,10 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
 ## 03/31/2019
 * Started adding a tagging system for posts.
 * Added test cases for the blog app. Only tests the posts right now but will soon test tags too.
+## 05/13/2019
+* Working on using django-survey-and-report
+** This can replace the existing feature voting system I was trying to implement. It's more fleshed out.
+** To customize the survey template then create a folder in the base 'templates' folder and reference from there. IE: ```./surveys/survey.html``` to reference ./templates/surveys/survey.html. I believe this will continue to utilize the base.html that is being used by the package but allows you to customize the content block inside of the base.html.
 
 # Project Installation
 1. Pull project down from GitHub.
