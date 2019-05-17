@@ -34,6 +34,7 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
 1. Create a virtualenv (this isn't required but it's recommended.)
 1. Populate your environment with the required packages by running ```pip install -r requirements.txt``` from the root of the project folder.
     * The requirements.txt needs to be updated!!! Remove this note when that's done...
+1. Make required migrations for the project models to populate the database properly. ```python manage.py migrate```
 1. When in the root of the project run ```python manage.py runserver``` to run the server.
     * You can sign up for an account from within the project.
     * If you want to be a superuser or have admin access to things then run ```python manage.py createsuperuser``` and follow the prompts.
