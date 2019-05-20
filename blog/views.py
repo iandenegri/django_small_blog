@@ -2,10 +2,14 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
 from django.contrib.auth.models import User
+
+from rest_framework import viewsets
+
 from .models import Post
 from analytics.models import View
+from .serializers import PostSerializer
+
 
 # Create your views here.
 
@@ -94,3 +98,12 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 def about(request):
     return render(request, 'blog/about.html', context={'title':'About'})
+
+####### API DEVELOPMENT #######
+
+class PostViewSet(viewsets.ModelViewSet):
+    """
+    API Endpoint that allows posts to be viewed or edited.
+    """
+    queryset = Post.objects.all().order_by('date_posted')
+    serializer_class = PostSerializer

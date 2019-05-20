@@ -18,8 +18,14 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from users import views as user_views
 
+from rest_framework import routers
+
+from users import views as user_views
+from blog.views import PostViewSet
+
+router = routers.DefaultRouter()
+router.register(r'posts', PostViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -60,7 +66,8 @@ urlpatterns = [
         ),
 
     # Third party paths
-    path('api-auth/', include('rest_framework.urls')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/', include(router.urls)),
 ]
 
 if 'survey' in settings.INSTALLED_APPS:
