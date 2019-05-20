@@ -42,11 +42,14 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
 1. Check out the site at localhost:8000/
 
 # Upcoming features:
+* Clean up features and areas that aren't needed...
+* UNIT TESTS!!!!!!!!! Need to also add an area in the ReadMe explaining how to run unit tests once they're added...
 * I would like to add a messaging feature.
 * Maybe instant messaging? Not sure if this is possible. I'd need a way to have two users on the same connection... I think I'll need to deploy this to test it...
 * A search bar to search for posts
 * A search bar to search for users
-* UNIT TESTS!!!!!!!!! Need to also add an area in the ReadMe explaining how to run unit tests once they're added...
+* Update the sidebar to actually do something.
+
 
 # To-Do's That I'm Not Sure About:
 * Add the ability to export a post as a PDF
