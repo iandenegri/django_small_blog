@@ -19,7 +19,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
-from analytics.views import FeatureSurveyIndex
 
 
 urlpatterns = [
@@ -28,7 +27,6 @@ urlpatterns = [
     path('profile/', user_views.profile, name="profile"),
     path('register/', user_views.register, name="register"),
     path('users/', include('users.urls')),
-    path('features/', FeatureSurveyIndex, name="feature_survey"),
 
     path(
         'login/',
@@ -63,7 +61,6 @@ urlpatterns = [
 
     # Third party paths
     path('api-auth/', include('rest_framework.urls')),
-    path('accounts/', include('allauth.urls')),
 ]
 
 if 'survey' in settings.INSTALLED_APPS:
