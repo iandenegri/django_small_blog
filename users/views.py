@@ -114,8 +114,8 @@ def accept_friend_request(request, pk):
 
     user1 = fri_request.to_user
     user2 = fri_request.from_user
-    user1.profile.friends.add(user2.Profile)
-    user2.profile.friends.add(user1.Profile)
+    user1.profile.friends.add(user2.profile)
+    user2.profile.friends.add(user1.profile)
     fri_request.delete()
     messages.success(request, "Your friend request from {} has been accepted!".format(from_user))
     return redirect('/profile/')
