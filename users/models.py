@@ -17,7 +17,7 @@ class Profile(models.Model):
     def get_absolute_url(self):
         return "/users/{}".format(self.pk)
 
-    # This function below causes issues with S3.     
+    # This function below causes issues with S3. Not sure if I should remove this or not.
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)
 
