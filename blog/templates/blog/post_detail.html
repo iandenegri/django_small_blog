@@ -12,6 +12,15 @@
                         <a href="{% url 'post-update' object.id %}" class="btn btn-secondary btn-sm mt-1 mb-1">Update Post</a>
                         <a href="{% url 'post-delete' object.id %}" class="btn btn-danger btn-sm mt-1 mb-1">Delete Post</a>
                     </div>
+                {% else %}
+                    <div>
+                        {% if post.author != request.user and post.author not in request.user.profile.friends.all %}
+                            <a href="{% url 'send_request' post.author.pk %}" class="btn btn-primary btn-sm mt-1 mb-1">Add This User As A Friend?</a>
+                        {% endif %}
+                        {% if post.author %}
+                        {{ request.user.friendrequest.all }}
+                        {% endif %}
+                    </div>
                 {% endif %}
             </div>
             <h2 class="article-title">{{ object.title }}</h2>

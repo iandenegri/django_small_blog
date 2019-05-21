@@ -95,10 +95,6 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         else:
             return False
 
-
-def about(request):
-    return render(request, 'blog/about.html', context={'title':'About'})
-
 ####### API DEVELOPMENT #######
 
 class PostViewSet(viewsets.ModelViewSet):
