@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 from rest_framework import viewsets
 
@@ -14,10 +15,23 @@ from .serializers import PostSerializer
 # Create your views here.
 
 def home(request):
+    search_query = request.GET.get('q', None) # Get the search query or if it doesn't exist then set the query to None.
+    print(request)
+    print(request.GET)
+    print(request.GET.get('q'))
+    posts = Post.objects.all()
+    if search_query:
+        post_list = posts.filter(
+            Q(title__icontains=search_query) | \
+            Q(content__icontains=search_query) | \
+            Q(author__istartswith=search_query)
+        )
+    else:
+        post_list = posts
     context = {
-        'posts': Post.objects.all()
-    }
-    return render(request, 'blog/home.html', context=context)
+        'posts':post_list,
+        }
+    return render(request, 'blog/home.html', context=context) 
 
 
 class PostListView(ListView):
