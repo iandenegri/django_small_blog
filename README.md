@@ -35,6 +35,8 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
 * Adding a script that will populate the data base with users and posts.
 ## 05/20/2019
 * You can now add a user from their post by clicking on the title of a post to see the post details and clicking on the add user button beneath their name.
+## 05/22/2019
+* Added a search bar that can search for posts that contain the query string and that searches for users whose usernames start with the query string. I did no testing on this beyond seeing if it worked on my tests but it seems to consistently work. I should probably add something for when the result total is 0.
 
 # Project Installation
 1. Pull project down from GitHub.
@@ -54,8 +56,6 @@ Small Django blog that allows users to sign up to post. Has a minor view trackin
 * Add an area in the profile section for admins to decide which poll should show up in the side panel.
 * I would like to add a messaging feature.
 * Maybe instant messaging? Not sure if this is possible. I'd need a way to have two users on the same connection... I think I'll need to deploy this to test it...
-* A search bar to search for posts
-* A search bar to search for users
 * Update the sidebar to actually do something.
 
 
