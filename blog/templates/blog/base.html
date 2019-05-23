@@ -32,7 +32,7 @@
                             <a class="nav-item nav-link" href="{% url 'user_list' %}">Users</a>                           
                         </div>
                         {% comment %} <form method="GET" action="{% url 'posts:search' %}"> {% endcomment %}
-                        <form method="GET" action="{% url 'blog-home' %}">
+                        <form method="GET" action="{% url 'blog-search' %}">
                             {% comment %} <input name="q" type="text" placeholder="Search" value="{{ request.GET.q }}"> {% endcomment %}
                             <input name="q" type="text" placeholder="Search for an existing post" value="{{ request.GET.q }}">
                             <input type="submit" value="Search!">

@@ -1,6 +1,10 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h1 class="mb-3">Blog Home ({{ page_obj.paginator.count }}) </h1>
+    {% if page_obj.paginator.count %}
+        <h1 class="mb-3">Blog Home ({{ page_obj.paginator.count }}) </h1>
+    {% else %}
+        <h1 class="mb-3">Posts and users related to "{{ request.GET.q }}"</h1>
+    {% endif %}
     {% for post in posts %}
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="Author's profile picture">

@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h1>Blog home.</h1>
+    <h1>{{ object.title }}</h1>
     <article class="media content-section">
         <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt="Author's profile picture">
         <div class="media-body">
@@ -17,13 +17,9 @@
                         {% if post.author != request.user and post.author not in request.user.profile.friends.all %}
                             <a href="{% url 'send_request' post.author.pk %}" class="btn btn-primary btn-sm mt-1 mb-1">Add This User As A Friend?</a>
                         {% endif %}
-                        {% if post.author %}
-                        {{ request.user.friendrequest.all }}
-                        {% endif %}
                     </div>
                 {% endif %}
             </div>
-            <h2 class="article-title">{{ object.title }}</h2>
             <p class="article-content">{{ object.content }}</p>
         </div>
     </article>

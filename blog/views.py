@@ -24,8 +24,9 @@ def home(request):
         post_list = posts.filter(
             Q(title__icontains=search_query) | \
             Q(content__icontains=search_query) | \
-            Q(author__istartswith=search_query)
+            Q(author__username__istartswith=search_query)
         )
+        post_list.order_by('date_posted')
     else:
         post_list = posts
     context = {
