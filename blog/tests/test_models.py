@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-from .models import Post
+from blog.models import Post
 
 # Create your tests here.
 
@@ -31,12 +31,14 @@ class PostTestCase(TestCase):
             author=test_user
         )
 
-    def test_post_content(self):
+    def test_post_creation(self):
         """
-        Post and its content are correctly identified.
+        Test Post model, the creation of the post object and the post's object's content are correctly identified.
+        Test the functions added to the Post model.
         """
         post1 = Post.objects.get(title="TestPost1")
         post2 = Post.objects.get(title="TestPost2")
+        
         self.assertEqual(
             post1.content,
             "This string of text is the test text for the content field of a Post model."
@@ -46,22 +48,9 @@ class PostTestCase(TestCase):
             "."
         )
 
-    def test_post_title(self):
-        """
-        Post and its title are correctly identified.
-        """
-        post1 = Post.objects.get(content=
-            "This string of text is the test text for the content field of a Post model."
-        )
-        post2 = Post.objects.get(content=".")
-        self.assertEqual(
-            post1.title,
-            "TestPost1"
-        )
-        self.assertEqual(
-            post2.title,
-            "TestPost2"
-        )
+        self.assertEqual(post1.__str__(), post1.title)  # Test the string representation of the object.
+        for post in Post.objects.all():
+            self.assertEqual(post.get_absolute_url(), '/api/posts/{}/'.format(post.pk)) # Test to see if this method returns a reliable url.
 
 
 # Add tests for tagging system here.
